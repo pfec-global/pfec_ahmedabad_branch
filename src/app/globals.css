@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: #100694;
+  --color-sun: #fbcb20;
+  --color-accent: #e84b37;
+  --font-sans: var(--font-montserrat);
+  --font-titan: var(--font-titan-one);
+  --font-bebas: var(--font-bebas-neue);
+  --font-poppins: var(--font-poppins);
+  --animate-float: float 3.5s ease-in-out infinite;
+  --animate-ring: ring 4s ease-in-out infinite;
+  --animate-bob: bob 4s ease-in-out infinite;
+  --animate-hop: hop 5s ease-in-out infinite;
+  --animate-breathe: breathe 7s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-28%) rotate(6deg);
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4%);
+    }
+  }
+
+  @keyframes hop {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10%);
+    }
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.025);
+    }
+  }
+
+  @keyframes ring {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 0.45;
+    }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Desktop is drawn on a 1900px Figma frame: scale the root font size with the
+   viewport (16px at 1900px) so every rem-based size keeps the Figma proportions. */
+@layer base {
+  /* Footer and nav links glide to their section, stopping below the sticky navbar. */
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (width >= 1280px) {
+    html {
+      font-size: min(16px, 0.8421vw);
+    }
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fffdf3;
+  color: #1c1c1c;
+  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
 }
